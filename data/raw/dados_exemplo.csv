@@ -1,0 +1,31 @@
+id,idade,sexo,categoria,valor_compra,nps_satisfacao,receita_mensal,tempo_cliente_meses,observacao,target
+1,25,Masculino,A,150.50,8,3000.0,12,Produto de alta qualidade,25000.0
+2,30,Feminino,B,200.75,9,4500.5,24,Ótimo atendimento,32000.0
+3,40,Masculino,A,80.00,6,2000.0,6,Bom custo-benefício,18000.0
+4,35,Feminino,C,500.20,10,6000.0,36,Excelente experiencia,50000.0
+5,50,Masculino,A,120.00,7,2800.0,18,Entrega rápida,22000.0
+6,22,Feminino,B,30.00,5,1500.0,3,Poderia melhorar,12000.0
+7,45,Masculino,C,300.00,9,5200.0,30,Recomendo a todos,40000.0
+8,28,Feminino,A,75.00,7,2300.0,9,Produto conforme esperado,19000.0
+9,33,Masculino,B,NaN,NaN,3800.0,15,NaN,28000.0
+10,60,Feminino,C,700.00,10,7500.0,48,Sempre compro aqui,60000.0
+11,38,Masculino,A,100.00,8,2900.0,10,Gostei muito,24000.0
+12,NaN,Feminino,B,250.00,NaN,NaN,20,Bom,29000.0
+13,31,Masculino,C,400.00,9,5800.0,40,Muito satisfeito,45000.0
+14,27,Feminino,A,90.00,6,2100.0,7,Preço bom,17500.0
+15,42,Masculino,B,NaN,7,3500.0,22,Entrega demorou um pouco,26000.0
+16,29,Feminino,C,600.00,10,6500.0,33,Com certeza voltarei,55000.0
+17,36,Masculino,A,180.00,8,3200.0,14,Atendimento excelente,27000.0
+18,55,Feminino,NaN,220.00,9,4800.0,28,Experiência positiva,38000.0
+19,23,Masculino,B,40.00,4,1800.0,5,Não gostei do produto,10000.0
+20,48,Feminino,A,350.00,8,NaN,26,Qualidade garantida,33000.0
+21,30,Masculino,C,120.00,NaN,3100.0,13,Conforme o esperado,26500.0
+22,34,Feminino,B,280.00,9,4200.0,21,Adorei,31000.0
+23,52,Masculino,A,50.00,5,1900.0,8,Não recomendo,16000.0
+24,26,Feminino,C,450.00,10,5900.0,35,Fantástico,48000.0
+25,39,Masculino,NaN,110.00,7,2700.0,16,Normal,23000.0
+26,41,Feminino,B,NaN,8,3900.0,25,Satisfeita,29500.0
+27,37,Masculino,A,170.00,9,3400.0,17,Custo-benefício,28500.0
+28,44,Feminino,C,550.00,10,7000.0,42,Melhor compra,58000.0
+29,32,Masculino,B,60.00,6,2200.0,11,Pode melhorar,19500.0
+30,47,Feminino,A,290.00,8,4600.0,27,Compra repetida,36000.0

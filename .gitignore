@@ -1,0 +1,31 @@
+# Ambiente Virtual
+.venv/
+venv/
+env/
+
+# Arquivos Python compilados e caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Arquivos de configuração de IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos de Jupyter Notebook
+.ipynb_checkpoints
+
+# Arquivos de sistema operacional
+.DS_Store
+Thumbs.db
+
+# Dados processados e modelos (opcional, descomente se não quiser versionar)
+# data/processed/
+# models/
+
+# Logs e arquivos temporários
+*.log
+*.tmp
+
