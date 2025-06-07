@@ -327,25 +327,44 @@ def plotar_grafico_barras(df, coluna_categorica):
     As barras são ordenadas da mais frequente para a menos frequente.
     """
     if df is not None and coluna_categorica in df.columns:
-        if pd.api.types.is_categorical_dtype(df[coluna_categorica]) or df[coluna_categorica].dtype == 'object':
+        # --- ALTERAÇÃO AQUI: Atualiza a verificação de tipo de dado ---
+        # A forma mais moderna e recomendada pelo Pandas para verificar se a coluna é categórica ou de texto
+        if isinstance(df[coluna_categorica].dtype, pd.CategoricalDtype) or df[coluna_categorica].dtype == 'object':
             print(f"\n--- Criando um gráfico de barras para a coluna '{coluna_categorica}' ---")
             plt.figure(figsize=(8, 5))
 
+            # Cria o gráfico de barras usando Seaborn.
+            # 'x=coluna_categorica' define a variável categórica para o eixo X.
+            # 'data=df.fillna({coluna_categorica: 'Não Informado'})' usa o DataFrame, tratando NaNs como uma categoria 'Não Informado'.
+            # 'order=...' ordena as barras pela frequência (do maior para o menor).
             sns.countplot(x=coluna_categorica, data=df.fillna({coluna_categorica: 'Não Informado'}), order=df[coluna_categorica].value_counts(dropna=False).index)
 
-            plt.title(f'Contagem de cada opção em {coluna_categorica}')
+            # --- ALTERAÇÃO AQUI: Melhoria no título do gráfico ---
+            plt.title(f'Quantas vezes cada tipo de "{coluna_categorica}" aparece')
+
+            # Define o rótulo do eixo X, que representa as diferentes categorias.
             plt.xlabel(coluna_categorica)
+
+            # Define o rótulo do eixo Y, que representa a contagem (frequência) de cada categoria.
             plt.ylabel('Contagem')
+
+            # Rotaciona os rótulos do eixo X para melhor legibilidade se houver muitas categorias.
             plt.xticks(rotation=45, ha='right')
+
+            # Adiciona uma grade horizontal.
             plt.grid(axis='y', alpha=0.5)
+
+            # Ajusta o layout para evitar sobreposição de elementos.
             plt.tight_layout()
+
+            # Exibe o gráfico.
             plt.show()
         else:
             print(f"Erro: A coluna '{coluna_categorica}' não parece ser uma categoria (texto).")
     elif df is None:
         print("Não foi possível criar o gráfico de barras, pois os dados não foram carregados.")
     else:
-        print(f"Erro: Não foi encontrada a coluna '{coluna_categorica}' para o gráfico de barras.")
+        print(f"Erro: Não encontramos a coluna '{coluna_categorica}' para o gráfico de barras.")
 
 def plotar_grafico_dispersao(df, coluna_x, coluna_y):
     """Plota um gráfico de dispersão (scatter plot) para visualizar a relação
@@ -472,7 +491,7 @@ def avaliar_modelo(modelo, X_teste, y_teste):
 # Ajuste o caminho se executar de um local diferente da raiz do projeto
 # Ex: Se executar de /notebooks, use '../data/raw/dados_exemplo.csv'
 # Ex: Se executar da raiz do projeto: caminho_csv = 'data/raw/dados_exemplo.csv'
-caminho_csv = '../data/raw/dados_exemplo.csv' # Caminho relativo à pasta 'src'
+caminho_csv = '../data/raw/dados_exemplo_2.csv' # Caminho relativo à pasta 'src'
 
 # Identifique aqui todas as colunas que são de TEXTO/CATEGORIA no seu arquivo original
 # Elas serão usadas para a Análise Exploratória e para a Codificação
