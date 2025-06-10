@@ -143,16 +143,7 @@ def verificar_valores_unicos(df, colunas_categoricas):
 # 3. Funções para Pré-processamento
 # ==============================================================================
 def tratar_valores_ausentes(df, estrategia_num= 'median', estrategia_cat='most_frequent'):
-    """Trata valores ausentes usando SimpleImputer.
-
-    Args:
-        df (pd.DataFrame): DataFrame com valores ausentes.
-        estrategia_num (str): Estratégia para colunas numéricas (   'mean',     'median').
-        estrategia_cat (str): Estratégia para colunas categóricas ( 'most_frequent',    'constant').
-
-    Returns:
-        pd.DataFrame: DataFrame com valores ausentes tratados.
-    """
+    """Trata valores ausentes usando SimpleImputer. """
     if df is None:
         print("Não foi possível preencher os dados faltando, pois os dados não foram carregados.")
         return None
@@ -185,16 +176,7 @@ def tratar_valores_ausentes(df, estrategia_num= 'median', estrategia_cat='most_f
     return df_tratado
 
 def codificar_variaveis_categoricas(df, colunas_categoricas, metodo= 'onehot'):
-    """Codifica variáveis categóricas usando Label Encoding ou One-Hot Encoding.
-
-    Args:
-        df (pd.DataFrame): DataFrame com colunas categóricas.
-        colunas_categoricas (list): Lista de nomes das colunas a serem codificadas.
-        metodo (str): 'label' para LabelEncoder ou 'onehot' para OneHotEncoder (get_dummies).
-
-    Returns:
-        pd.DataFrame: DataFrame com colunas categóricas codificadas.
-    """
+    """Codifica variáveis categóricas usando Label Encoding ou One-Hot Encoding."""
     if df is None:
         print("Não foi possível transformar as categorias, pois os dados não foram carregados.")
         return None
@@ -249,17 +231,7 @@ def remover_colunas_nao_numericas_para_modelo(df, coluna_target):
     return df_limpo
 
 def dividir_dados_treino_teste(df, coluna_target, test_size=0.3, random_state=42):
-    """Divide o DataFrame em conjuntos de treino e teste.
-
-    Args:
-        df (pd.DataFrame): DataFrame completo.
-        coluna_target (str): Nome da coluna alvo (variável dependente).
-        test_size (float): Proporção do dataset a ser usada como teste.
-        random_state (int): Seed para reprodutibilidade.
-
-    Returns:
-        tuple: (X_treino, X_teste, y_treino, y_teste) ou (None, None, None, None) se erro.
-    """
+    """Divide o DataFrame em conjuntos de treino e teste."""
     if df is None or coluna_target not in df.columns:
         print(f"Erro: Não foi possível dividir os dados. A coluna principal '{coluna_target}' não foi encontrada ou os dados estão vazios.")
         return None, None, None, None
@@ -405,15 +377,7 @@ def plotar_grafico_dispersao(df, coluna_x, coluna_y):
 # 5. Funções para Modelagem e Avaliação
 # ==============================================================================
 def treinar_modelo_regressao(X_treino, y_treino):
-    """Treina um modelo de Regressão Linear.
-
-    Args:
-        X_treino (pd.DataFrame ou np.ndarray): Features de treino.
-        y_treino (pd.Series ou np.ndarray): Target de treino.
-
-    Returns:
-        LinearRegression: Modelo treinado ou None se erro.
-    """
+    """Treina um modelo de Regressão Linear."""
     if X_treino is None or y_treino is None:
         print("Erro: Não há dados válidos para o modelo aprender.")
         return None
@@ -433,16 +397,7 @@ def treinar_modelo_regressao(X_treino, y_treino):
         return None
 
 def avaliar_modelo(modelo, X_teste, y_teste):
-    """Avalia o modelo treinado usando MAE e R².
-
-    Args:
-        modelo: Modelo treinado.
-        X_teste (pd.DataFrame ou np.ndarray): Features de teste.
-        y_teste (pd.Series ou np.ndarray): Target de teste.
-
-    Returns:
-        tuple: (mae, r2) ou (None, None) se erro.
-    """
+    """Avalia o modelo treinado usando MAE e R²."""
     if modelo is None or X_teste is None or y_teste is None:
         print("Erro: Não há modelo treinado ou dados de teste para avaliar.")
         return None, None
@@ -496,8 +451,7 @@ caminho_csv = '../data/raw/dados_exemplo_2.csv' # Caminho relativo à pasta 'src
 # Identifique aqui todas as colunas que são de TEXTO/CATEGORIA no seu arquivo original
 # Elas serão usadas para a Análise Exploratória e para a Codificação
 colunas_categoricas_para_eda = ['sexo', 'categoria', 'observacao'] # Adicionei 'observacao'
-colunas_categoricas_para_codificar = ['sexo', 'categoria'] # 'observacao' não deve ser codificada para o modelo, mas sim removida ou tratada de outra forma.
-# Se 'observacao' fosse útil para o modelo (ex: extrair sentimentos), precisaria de outro pré-processamento.
+colunas_categoricas_para_codificar = ['sexo', 'categoria'] 
 # Para este código, a melhor opção é removê-la se não for codificada.
 
 coluna_target = 'target'
@@ -573,7 +527,6 @@ if df_tratado is not None:
     df_codificado = codificar_variaveis_categoricas(df_tratado, colunas_cat_existentes, metodo='onehot')
 
     # NOVA ETAPA: Remover colunas que ainda são de texto e não foram codificadas
-    # Isso resolve o erro 'could not convert string to float' para a coluna 'observacao'
     if df_codificado is not None:
         df_final_para_modelo = remover_colunas_nao_numericas_para_modelo(df_codificado, coluna_target)
     else:
