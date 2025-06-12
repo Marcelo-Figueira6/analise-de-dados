@@ -171,16 +171,13 @@ def tratar_valores_ausentes(df, estrategia_num= 'median', estrategia_cat='most_f
         print(f"Informações de texto faltando ({', '.join(colunas_cat)}) foram preenchidas com a opção mais comum.")
 
     print("Preenchimento de informações faltando concluído.")
-    # Re-verifica ausentes após tratamento
-    verificar_valores_ausentes(df_tratado) # Mantém essa chamada para confirmar
+    verificar_valores_ausentes(df_tratado) 
     return df_tratado
 
 def codificar_variaveis_categoricas(df, colunas_categoricas, metodo= 'onehot'):
-    """Codifica variáveis categóricas usando Label Encoding ou One-Hot Encoding."""
     if df is None:
         print("Não foi possível transformar as categorias, pois os dados não foram carregados.")
         return None
-
     df_codificado = df.copy()
     print(f"\n--- Transformando categorias de texto em números (Método: {metodo}) ---")
 
@@ -193,7 +190,7 @@ def codificar_variaveis_categoricas(df, colunas_categoricas, metodo= 'onehot'):
         encoder = LabelEncoder()
         for coluna in colunas_existentes:
             if df_codificado[coluna].isnull().any():
-                df_codificado[coluna].fillna( 'Desconhecido', inplace=True) # Tratamento adicional para LabelEncoder
+                df_codificado[coluna].fillna( 'Desconhecido', inplace=True) 
             df_codificado[coluna] = encoder.fit_transform(df_codificado[coluna].astype(str))
             print(f"Coluna  '{coluna}' transformada para números de 0 a X.")
     elif metodo =='onehot':
@@ -207,10 +204,7 @@ def codificar_variaveis_categoricas(df, colunas_categoricas, metodo= 'onehot'):
     return df_codificado
 
 def remover_colunas_nao_numericas_para_modelo(df, coluna_target):
-    """
-    Remove colunas que não são numéricas (e não são a coluna target) para garantir
-    que o modelo de regressão linear receba apenas dados numéricos.
-    """
+
     if df is None:
         return None
 
